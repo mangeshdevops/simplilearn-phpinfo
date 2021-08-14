@@ -5,7 +5,7 @@ networks:
     internal: false
 
 services:
-  ${GITHUB_PROJECT}-service:
+  simplilearn-phpinfo-service:
     command: 
       - -f
       - index.php
