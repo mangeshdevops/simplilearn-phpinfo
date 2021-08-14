@@ -3,9 +3,6 @@ kind: Route
 metadata:
   name: simplilearn-phpinfo-route
 spec:
-  tls:
-    insecureEdgeTerminationPolicy: Redirect
-    termination: edge
   to:
     kind: Service
     name: simplilearn-phpinfo-svc
