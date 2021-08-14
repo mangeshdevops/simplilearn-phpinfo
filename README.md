@@ -1,14 +1,15 @@
 # simplilearn-phpinfo
 ## CLONE GITHUB REPOSITORY
 ```
-export ENV_FILE=common.env
-export GITHUB_USERNAME=academiaonline
-export GITHUB_PROJECT=simplilearn-phpinfo
-export GITHUB_BRANCH=2021-08
-export GITHUB_RELEASE=single-line
-export GITHUB_SRC=src
-export NODEPORT=80
-export WORKDIR=/src
+ADVERTISE_ADDR=192.168.0.8
+ENV_FILE=common.env
+GITHUB_BRANCH=2021-08
+GITHUB_PROJECT=simplilearn-phpinfo
+GITHUB_RELEASE=single-line
+GITHUB_SRC=src
+GITHUB_USERNAME=academiaonline
+NODEPORT=80
+WORKDIR=/src
 
 cd ${HOME}/
 git clone https://github.com/${GITHUB_USERNAME}/${GITHUB_PROJECT}
@@ -34,7 +35,7 @@ sudo docker container stats --no-stream ${GITHUB_PROJECT}_${GITHUB_RELEASE}
 ## DEPLOY WITH DOCKER SWARM
 ```
 source ${ENV_FILE}
-sudo docker swarm init
+sudo docker swarm init --advertise-addr ${ADVERTISE_ADDR}
 sudo docker stack deploy --compose-file docker-compose.yaml ${GITHUB_PROJECT}_${GITHUB_RELEASE}
 ```
 ## SAME THING WITHOUT A VOLUME
