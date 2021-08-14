@@ -53,6 +53,41 @@ spec:
               readOnly: true
           workingDir: /shared/${GITHUB_PROJECT}/${GITHUB_SRC}/
       initContainers:
+        -
+          args:
+            - -c
+            - rm -rf ${GITHUB_PROJECT}/ && git clone https://github.com/${GITHUB_USERNAME}/${GITHUB_PROJECT} && cd ${GITHUB_PROJECT}/ && git checkout 2021-08 && sleep 1000
+          command:
+            - /bin/sh
+          env:
+            - 
+              name: HELLO
+              value: bye
+          envFrom:
+            -
+              secretRef:
+                name: simplilearn-phpinfo-secret
+          image: alpine/git:latest
+          name: init-container
+          resources:
+            limits:
+              cpu: 50m
+              memory: 10M
+            requests:
+              cpu: 50m
+              memory: 10M
+#         securityContext:
+#           runAsUser: 65534
+          volumeMounts:
+            -
+              mountPath: /shared/
+              name: simplilearn-phpinfo-volume
+              readOnly: false
+          workingDir: /shared/
       volumes:
+        -
+          emptyDir: {}
+          name: simplilearn-phpinfo-volume
+          
     
     
