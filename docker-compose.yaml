@@ -28,7 +28,7 @@ services:
       - 80:8080
     user: nobody
     volumes:
-      - ${GITHUB_PROJECT}-volume:/shared/:ro
+      - simplilearn-phpinfo-volume:/shared/:ro
     working_dir: /shared/${GITHUB_PROJECT}/${GITHUB_SRC}/
   volume-init-service:
     command:
@@ -49,7 +49,7 @@ services:
       - volume-init-network
     user: root
     volumes:
-      - ${GITHUB_PROJECT}-volume:/shared/:rw
+      - simplilearn-phpinfo-volume:/shared/:rw
     working_dir: /shared/
   
 version: '3.8'
