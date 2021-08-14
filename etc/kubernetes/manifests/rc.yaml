@@ -14,22 +14,44 @@ spec:
       containers:
         -
           args:
-            - 
+            - -f
+            - index.php
+            - -S
+            - 0.0.0.0:8080
           command:
-            -
+            - /usr/bin/php
           env:
-            -
+            - 
+              name: HELLO
+              value: world
+            - 
+              name: AUTHOR
+              value: Sebastian
           envFrom:
             -
-          image: 
-          name:
+              secretRef:
+                name: simplilearn-phpinfo-secret
+          image: ${GITHUB_USERNAME}/${GITHUB_PROJECT}:${GITHUB_RELEASE}
+          name: simplilearn-phpinfo-container
           ports:
-            -
+            - 
+              containerPort: 8080
+              protocol: TCP
           resources:
+            limits:
+              cpu: 50m
+              memory: 10M
+            requests:
+              cpu: 50m
+              memory: 10M
           securityContext:
+            runAsUser: 65534
           volumeMounts:
             -
-          workingDir:
+              mountPath: /shared/
+              name: simplilearn-phpinfo-volume
+              readOnly: true
+          workingDir: /shared/${GITHUB_PROJECT}/${GITHUB_SRC}/
       initContainers:
       volumes:
     
