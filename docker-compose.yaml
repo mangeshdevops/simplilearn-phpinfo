@@ -21,7 +21,7 @@ services:
     environment:
       HELLO: world
       AUTHOR: Sebastian
-    image: ${GITHUB_USERNAME}/${GITHUB_PROJECT}:${GITHUB_RELEASE}
+    image: academiaonline/simplilearn-phpinfo:single-line
     networks:
       - simplilearn-phpinfo-network
     ports:
