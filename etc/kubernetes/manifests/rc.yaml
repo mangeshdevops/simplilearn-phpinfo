@@ -40,10 +40,10 @@ spec:
           resources:
             limits:
               cpu: 50m
-              memory: 12M
+              memory: 12Mi
             requests:
               cpu: 50m
-              memory: 12M
+              memory: 12Mi
           volumeMounts:
             -
               mountPath: /shared/
@@ -70,10 +70,10 @@ spec:
           resources:
             limits:
               cpu: 50m
-              memory: 12M
+              memory: 12Mi
             requests:
               cpu: 50m
-              memory: 12M
+              memory: 12Mi
           volumeMounts:
             -
               mountPath: /shared/
