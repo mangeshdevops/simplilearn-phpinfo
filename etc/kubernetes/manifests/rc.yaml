@@ -31,7 +31,7 @@ spec:
             -
               secretRef:
                 name: simplilearn-phpinfo-secret
-          image: ${GITHUB_USERNAME}/${GITHUB_PROJECT}:${GITHUB_RELEASE}
+          image: academiaonline/simplilearn-phpinfo:single-line
           name: simplilearn-phpinfo-container
           ports:
             - 
@@ -44,19 +44,19 @@ spec:
             requests:
               cpu: 50m
               memory: 10M
-          securityContext:
-            runAsUser: 65534
+#         securityContext:
+#           runAsUser: 65534
           volumeMounts:
             -
               mountPath: /shared/
               name: simplilearn-phpinfo-volume
               readOnly: true
-          workingDir: /shared/${GITHUB_PROJECT}/${GITHUB_SRC}/
+          workingDir: /shared/simplilearn-phpinfo/src/
       initContainers:
         -
           args:
             - -c
-            - rm -rf ${GITHUB_PROJECT}/ && git clone https://github.com/${GITHUB_USERNAME}/${GITHUB_PROJECT} && cd ${GITHUB_PROJECT}/ && git checkout 2021-08 && sleep 1000
+            - rm -rf simplilearn-phpinfo/ && git clone https://github.com/academiaonline/simplilearn-phpinfo && cd simplilearn-phpinfo/ && git checkout 2021-08 && sleep 1000
           command:
             - /bin/sh
           env:
@@ -77,7 +77,7 @@ spec:
               cpu: 50m
               memory: 10M
 #         securityContext:
-#           runAsUser: 65534
+#           runAsUser: 0
           volumeMounts:
             -
               mountPath: /shared/
