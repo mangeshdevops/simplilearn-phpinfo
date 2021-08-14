@@ -17,6 +17,13 @@ services:
         constraints:
           - node.role == worker
       replicas: 2
+      resources:
+        limits:
+          cpus: "0.050"
+          memory: 10M
+        reservations:
+          cpus: "0.050"
+          memory: 10M
     entrypoint: /usr/bin/php
     environment:
       HELLO: world
@@ -40,6 +47,13 @@ services:
       placement:
         constraints:
           - node.role == worker
+      resources:
+        limits:
+          cpus: "0.050"
+          memory: 10M
+        reservations:
+          cpus: "0.050"
+          memory: 10M
     entrypoint: /bin/sh
     env_file:
       - ./${ENV_FILE}
