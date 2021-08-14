@@ -1,14 +1,14 @@
 # simplilearn-phpinfo
 ## CLONE GITHUB REPOSITORY
 ```
-ENV_FILE=common.env
-GITHUB_USERNAME=academiaonline
-GITHUB_PROJECT=simplilearn-phpinfo
-GITHUB_BRANCH=2021-08
-GITHUB_RELEASE=single-line
-GITHUB_SRC=src
-NODEPORT=80
-WORKDIR=/src
+export ENV_FILE=common.env
+export GITHUB_USERNAME=academiaonline
+export GITHUB_PROJECT=simplilearn-phpinfo
+export GITHUB_BRANCH=2021-08
+export GITHUB_RELEASE=single-line
+export GITHUB_SRC=src
+export NODEPORT=80
+export WORKDIR=/src
 
 cd ${HOME}/
 git clone https://github.com/${GITHUB_USERNAME}/${GITHUB_PROJECT}
