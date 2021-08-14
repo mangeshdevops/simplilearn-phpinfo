@@ -1,5 +1,4 @@
 # simplilearn-phpinfo
-
 ## CLONE GITHUB REPOSITORY
 ```
 GITHUB_USERNAME=academiaonline
