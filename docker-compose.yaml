@@ -18,6 +18,8 @@ services:
           - node.role == worker
       replicas: 2
     entrypoint: /usr/bin/php
+    env_file:
+      - ./common.env
     environment:
       HELLO: world
       AUTHOR: Sebastian
