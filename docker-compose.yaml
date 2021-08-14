@@ -1,11 +1,11 @@
 networks:
-  simplilearn-phpinfo-network:
+  ${GITHUB_PROJECT}-network:
     internal: true
   volume-init-network:
     internal: false
 
 services:
-  simplilearn-phpinfo-service:
+  ${GITHUB_PROJECT}-service:
     command: 
       - -f
       - index.php
@@ -21,14 +21,14 @@ services:
     environment:
       HELLO: world
       AUTHOR: Sebastian
-    image: academiaonline/simplilearn-phpinfo:single-line
+    image: ${GITHUB_USERNAME}/${GITHUB_PROJECT}:${GITHUB_RELEASE}
     networks:
-      - simplilearn-phpinfo-network
+      - ${GITHUB_PROJECT}-network
     ports:
       - 80:8080
     user: nobody
     volumes:
-      - simplilearn-phpinfo-volume:/shared/:ro
+      - ${GITHUB_PROJECT}-volume:/shared/:ro
     working_dir: /shared/${GITHUB_PROJECT}/${GITHUB_SRC}/
   volume-init-service:
     command:
@@ -41,7 +41,7 @@ services:
           - node.role == worker
     entrypoint: /bin/sh
     env_file:
-      - ./common.env
+      - ./${ENV_FILE}
     environment:
       HELLO: bye
     image: alpine/git:latest
@@ -49,10 +49,10 @@ services:
       - volume-init-network
     user: root
     volumes:
-      - simplilearn-phpinfo-volume:/shared/:rw
+      - ${GITHUB_PROJECT}-volume:/shared/:rw
     working_dir: /shared/
   
 version: '3.8'
 
 volumes:
-  simplilearn-phpinfo-volume:
+  ${GITHUB_PROJECT}-volume:
