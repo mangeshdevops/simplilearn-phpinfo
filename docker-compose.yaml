@@ -33,7 +33,7 @@ services:
   volume-init-service:
     command:
       - -c
-      - 'rm -rf simplilearn-phpinfo/ && git clone https://github.com/academiaonline/simplilearn-phpinfo && cd simplilearn-phpinfo/ && git checkout 2021-08 && sleep 1000'
+      - rm -rf simplilearn-phpinfo/ && git clone https://github.com/academiaonline/simplilearn-phpinfo && cd simplilearn-phpinfo/ && git checkout 2021-08 && sleep 1000
     deploy:
       mode: global
       placement:
