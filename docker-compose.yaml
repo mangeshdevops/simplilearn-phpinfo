@@ -2,7 +2,7 @@ networks:
   simplilearn-phpinfo-network:
     internal: true
   volume-init-network:
-    internal: true
+    internal: false
 
 services:
   simplilearn-phpinfo-service:
