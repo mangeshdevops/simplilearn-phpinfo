@@ -1,7 +1,7 @@
 # simplilearn-phpinfo
 ## CLONE GITHUB REPOSITORY
 ```
-export ADVERTISE_ADDR=192.168.0.8
+export ADVERTISE_ADDR=$( ip route | grep dev.eth0.proto.kernel | awk '{ print $9 }' )
 export ENV_FILE=common.env
 export GITHUB_BRANCH=2021-08
 export GITHUB_PROJECT=simplilearn-phpinfo
