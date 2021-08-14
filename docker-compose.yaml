@@ -55,4 +55,4 @@ services:
 version: '3.8'
 
 volumes:
-  ${GITHUB_PROJECT}-volume:
+  simplilearn-phpinfo-volume:
