@@ -19,7 +19,7 @@ services:
       replicas: 2
     entrypoint: /usr/bin/php
     env_file:
-      - ./${ENV_FILE}
+      - ./common.env
     environment:
       HELLO: world
       AUTHOR: Sebastian
