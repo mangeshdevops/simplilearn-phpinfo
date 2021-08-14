@@ -29,11 +29,11 @@ services:
     user: nobody
     volumes:
       - simplilearn-phpinfo-volume:/shared/:ro
-    working_dir: /shared/simplilearn-phpinfo/src/
+    working_dir: /shared/${GITHUB_PROJECT}/${GITHUB_SRC}/
   volume-init-service:
     command:
       - -c
-      - rm -rf simplilearn-phpinfo/ && git clone https://github.com/academiaonline/simplilearn-phpinfo && cd simplilearn-phpinfo/ && git checkout 2021-08 && sleep 1000
+      - rm -rf ${GITHUB_PROJECT}/ && git clone https://github.com/${GITHUB_USERNAME}/${GITHUB_PROJECT} && cd ${GITHUB_PROJECT}/ && git checkout 2021-08 && sleep 1000
     deploy:
       mode: global
       placement:
