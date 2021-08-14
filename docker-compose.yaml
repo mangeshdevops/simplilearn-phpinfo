@@ -1,5 +1,5 @@
 networks:
-  ${GITHUB_PROJECT}-network:
+  simplilearn-phpinfo-network:
     internal: true
   volume-init-network:
     internal: false
