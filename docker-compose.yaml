@@ -32,15 +32,14 @@ services:
     working_dir: /shared/simplilearn-phpinfo/src/
   volume-init-service:
     command:
+      - -c
       - 'rm -rf simplilearn-phpinfo/ && git clone https://github.com/academiaonline/simpliearn-phpinfo && cd simplilearn-phpinfo/ && git checkout 2021-08 && sleep 1000'
     deploy:
       mode: global
       placement:
         constraints:
           - node.role == worker
-    entrypoint:
-      - sh
-      - '-c'
+    entrypoint: /bin/sh
     environment:
       HELLO: bye
     image: alpine/git:latest
