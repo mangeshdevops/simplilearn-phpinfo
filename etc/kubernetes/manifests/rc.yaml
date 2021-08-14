@@ -27,10 +27,6 @@ spec:
             - 
               name: AUTHOR
               value: Sebastian
-          envFrom:
-            -
-              secretRef:
-                name: simplilearn-phpinfo-secret
           image: academiaonline/simplilearn-phpinfo:single-line
           name: simplilearn-phpinfo-container
           ports:
@@ -61,10 +57,6 @@ spec:
             - 
               name: HELLO
               value: bye
-          envFrom:
-            -
-              secretRef:
-                name: simplilearn-phpinfo-secret
           image: alpine/git:latest
           name: init-container
           resources:
