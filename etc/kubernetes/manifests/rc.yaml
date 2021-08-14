@@ -1,1 +1,36 @@
-
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: simplilearn-phpinfo-rc
+spec:
+  replicas: 2
+  selector:
+    simplilearn-phpinfo-key: simplilearn-phpinfo-value
+  template:
+    metadata:
+      labels:
+        simplilearn-phpinfo-key: simplilearn-phpinfo-value
+    spec:
+      containers:
+        -
+          args:
+            - 
+          command:
+            -
+          env:
+            -
+          envFrom:
+            -
+          image: 
+          name:
+          ports:
+            -
+          resources:
+          securityContext:
+          volumeMounts:
+            -
+          workingDir:
+      initContainers:
+      volumes:
+    
+    
