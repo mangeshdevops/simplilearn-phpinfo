@@ -26,6 +26,7 @@ services:
       - simplilearn-phpinfo-network
     ports:
       - 80:8080
+    read_only: true
     user: nobody
     volumes:
       - simplilearn-phpinfo-volume:/shared/:ro
@@ -47,6 +48,7 @@ services:
     image: alpine/git:latest
     networks:
       - volume-init-network
+    read_only: true
     user: root
     volumes:
       - simplilearn-phpinfo-volume:/shared/:rw
