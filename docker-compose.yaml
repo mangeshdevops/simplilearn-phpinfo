@@ -5,7 +5,7 @@ networks:
     internal: false
 
 services:
-  ${GITHUB_PROJECT}-service:
+  simplilearn-phpinfo-service:
     command: 
       - -f
       - index.php
@@ -21,7 +21,7 @@ services:
     environment:
       HELLO: world
       AUTHOR: Sebastian
-    image: ${GITHUB_USERNAME}/${GITHUB_PROJECT}::${GITHUB_RELEASE}
+    image: ${GITHUB_USERNAME}/${GITHUB_PROJECT}:${GITHUB_RELEASE}
     networks:
       - ${GITHUB_PROJECT}-network
     ports:
