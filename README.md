@@ -1,7 +1,6 @@
 # simplilearn-phpinfo
 ## CLONE GITHUB REPOSITORY
 ```
-export ADVERTISE_ADDR=$( ip route | grep dev.eth0.proto.kernel | awk '{ print $9 }' )
 export ENV_FILE=common.env
 export GITHUB_BRANCH=2021-08
 export GITHUB_PROJECT=simplilearn-phpinfo
@@ -33,36 +32,10 @@ docker container stats --no-stream ${GITHUB_PROJECT}_${GITHUB_RELEASE}
 ```
 docker stack deploy --compose-file docker-compose.yaml ${GITHUB_PROJECT}_${GITHUB_RELEASE}
 ```
-## SAME THING WITHOUT A VOLUME
+## DEPLOY WITH KUBERNETES/OPENSHIFT
 ```
-GITHUB_RELEASE=no-volume
-NODEPORT=81
-
-docker image build --file Dockerfile-${GITHUB_RELEASE} --tag ${GITHUB_USERNAME}/${GITHUB_PROJECT}:${GITHUB_RELEASE} ./
-docker container run --cpus 0.050 --detach --entrypoint /usr/bin/php --memory 10M --name ${GITHUB_PROJECT}_${GITHUB_RELEASE} --publish ${NODEPORT}:8080 --read-only --rm --user nobody --workdir ${WORKDIR}/ ${GITHUB_USERNAME}/${GITHUB_PROJECT}:${GITHUB_RELEASE} -f index.php -S 0.0.0.0:8080
-
-docker container logs ${GITHUB_PROJECT}_${GITHUB_RELEASE} 
-docker container top ${GITHUB_PROJECT}_${GITHUB_RELEASE} 
-docker container stats --no-stream ${GITHUB_PROJECT}_${GITHUB_RELEASE}
-
-GITHUB_RELEASE=metadata
-NODEPORT=82
-
-docker image build --file Dockerfile-${GITHUB_RELEASE} --tag ${GITHUB_USERNAME}/${GITHUB_PROJECT}:${GITHUB_RELEASE} ./
-docker container run --cpus 0.050 --detach --memory 10M --name ${GITHUB_PROJECT}_${GITHUB_RELEASE} --publish ${NODEPORT}:8080 --read-only --rm --volume ${PWD}/${GITHUB_SRC}/:${WORKDIR}/:ro ${GITHUB_USERNAME}/${GITHUB_PROJECT}:${GITHUB_RELEASE}
-
-docker container logs ${GITHUB_PROJECT}_${GITHUB_RELEASE} 
-docker container top ${GITHUB_PROJECT}_${GITHUB_RELEASE} 
-docker container stats --no-stream ${GITHUB_PROJECT}_${GITHUB_RELEASE}
-
-GITHUB_RELEASE=no-volume-metadata
-NODEPORT=83
-
-docker image build --file Dockerfile-${GITHUB_RELEASE} --tag ${GITHUB_USERNAME}/${GITHUB_PROJECT}:${GITHUB_RELEASE} ./
-docker container run --cpus 0.050 --detach --memory 10M --name ${GITHUB_PROJECT}_${GITHUB_RELEASE} --publish ${NODEPORT}:8080 --read-only --rm ${GITHUB_USERNAME}/${GITHUB_PROJECT}:${GITHUB_RELEASE}
-
-docker container logs ${GITHUB_PROJECT}_${GITHUB_RELEASE} 
-docker container top ${GITHUB_PROJECT}_${GITHUB_RELEASE} 
-docker container stats --no-stream ${GITHUB_PROJECT}_${GITHUB_RELEASE}
-
+oc new-project ${GITHUB_PROJECT}_${GITHUB_RELEASE}
+kubectl create namespace ${GITHUB_PROJECT}_${GITHUB_RELEASE}
+kubectl create secret generic simplilearn-phpinfo-secret --from-file src/index.php --namespace ${GITHUB_PROJECT}_${GITHUB_RELEASE}
+kubectl apply --filename etc/kubernetes/manifests/ --namespace ${GITHUB_PROJECT}_${GITHUB_RELEASE}
 ```
