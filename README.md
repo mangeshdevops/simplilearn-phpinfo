@@ -6,16 +6,15 @@ export ENV_FILE=common.env
 export GITHUB_BRANCH=2021-08
 export GITHUB_PROJECT=simplilearn-phpinfo
 export GITHUB_RELEASE=single-line
-export GITHUB_SRC=src
 export GITHUB_USERNAME=academiaonline
 export NODEPORT=80
-export WORKDIR=/src
 
 cd ${HOME}/
 git clone https://github.com/${GITHUB_USERNAME}/${GITHUB_PROJECT}
 cd ${GITHUB_PROJECT}/
 git pull
 git checkout ${GITHUB_BRANCH}
+git pull
 ```
 ## BUILD AND PUSH DOCKER IMAGE
 ```
