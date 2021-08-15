@@ -42,40 +42,16 @@ spec:
               memory: 120Mi
           volumeMounts:
             -
-              mountPath: /shared/
+              mountPath: /app/index.php
               name: simplilearn-phpinfo-volume
               readOnly: true
-          workingDir: /shared/simplilearn-phpinfo/src/
-      initContainers:
-        -
-          args:
-            - -c
-            - rm -rf simplilearn-phpinfo/ && git clone https://github.com/academiaonline/simplilearn-phpinfo && cd simplilearn-phpinfo/ && git checkout 2021-08
-          command:
-            - /bin/sh
-          env:
-            - 
-              name: HELLO
-              value: bye
-          image: alpine/git:latest
-          name: init-container
-          resources:
-            limits:
-              cpu: 50m
-              memory: 120Mi
-            requests:
-              cpu: 50m
-              memory: 120Mi
-          volumeMounts:
-            -
-              mountPath: /shared/
-              name: simplilearn-phpinfo-volume
-              readOnly: false
-          workingDir: /shared/
+              subPath: index.php
+          workingDir: /app/
       volumes:
         -
-          emptyDir: {}
           name: simplilearn-phpinfo-volume
+          secret:
+            secretName: simplilearn-phpinfo-secret
           
     
     
