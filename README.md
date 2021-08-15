@@ -7,6 +7,7 @@ GITHUB_RELEASE=single-line
 GITHUB_USERNAME=academiaonline
 
 cd ${HOME}/
+rm -rf ${GITHUB_PROJECT}/
 git clone https://github.com/${GITHUB_USERNAME}/${GITHUB_PROJECT}
 cd ${GITHUB_PROJECT}/
 git pull
