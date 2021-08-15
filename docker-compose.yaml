@@ -43,9 +43,9 @@ services:
         gid: '65534'
         mode: 0400
         source: simplilearn-phpinfo-secret
-        target: /src/index.php
+        target: /app/index.php
         uid: '65534'
     user: '65534'
-    working_dir: /src/
+    working_dir: /app/
   
 version: '3.8'
