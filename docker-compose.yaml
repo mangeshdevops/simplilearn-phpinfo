@@ -1,0 +1,49 @@
+networks:
+  simplilearn-phpinfo-network:
+    internal: true
+
+secrets:
+  simplilearn-phpinfo-secret:
+    file: ./src/index.php
+    
+services:
+  simplilearn-phpinfo-service:
+    command: 
+      - -f
+      - index.php
+      - -S
+      - 0.0.0.0:8080
+    deploy:
+      mode: replicated
+      placement:
+        constraints:
+          - node.role == worker
+      replicas: 2
+      resources:
+        limits:
+          cpus: "0.050"
+          memory: 10M
+        reservations:
+          cpus: "0.050"
+          memory: 10M
+    entrypoint: /usr/bin/php
+    environment:
+      HELLO: world
+      AUTHOR: Sebastian
+    expose:
+      - 8080
+    image: ${GITHUB_USERNAME}/${GITHUB_PROJECT}:${GITHUB_RELEASE}
+    networks:
+      - simplilearn-phpinfo-network
+    ports:
+      - 80:8080
+    read_only: true
+    secrets:
+      -
+        mode: 0400
+        source: simplilearn-phpinfo-secret
+        target: /src/index.php
+    user: nobody
+    working_dir: /src/
+  
+version: '3.8'
