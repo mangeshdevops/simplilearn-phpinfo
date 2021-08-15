@@ -42,7 +42,7 @@ spec:
               memory: 120Mi
           volumeMounts:
             -
-              mountPath: /app/
+              mountPath: /app/index.php
               name: simplilearn-phpinfo-volume
               readOnly: true
               subPath: index.php
