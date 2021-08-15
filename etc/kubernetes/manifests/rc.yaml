@@ -41,6 +41,7 @@ spec:
               cpu: 50m
               memory: 120Mi
           securityContext:
+            runAsGroup: 1000620000
             runAsUser: 1000620000
           volumeMounts:
             -
