@@ -31,7 +31,7 @@ USER=1000620000:1000620000
 WORKDIR=/app
 
 CMD="-f index.php -S 0.0.0.0:${TARGETPORT}"
-docker container run --cpus ${CPUS} --detach --entrypoint ${ENTRYPOINT} --memory ${MEMORY} --name ${GITHUB_PROJECT}_${GITHUB_RELEASE} --publish ${NODEPORT}:${TARGETPORT} --read-only --rm --user ${USER} --volume ${PWD}/${GITHUB_SRC}/${ARTIFACT}:${WORKDIR}/${ARTIFACT}:ro --workdir ${WORKDIR}/ ${GITHUB_USERNAME}/${GITHUB_PROJECT}:${GITHUB_RELEASE} ${CMD}
+docker container run --cpus ${CPUS} --detach --entrypoint ${ENTRYPOINT} --memory ${MEMORY} --name ${GITHUB_PROJECT}_${GITHUB_RELEASE} --publish ${NODEPORT}:${TARGETPORT} --read-only --restart always --user ${USER} --volume ${PWD}/${GITHUB_SRC}/${ARTIFACT}:${WORKDIR}/${ARTIFACT}:ro --workdir ${WORKDIR}/ ${GITHUB_USERNAME}/${GITHUB_PROJECT}:${GITHUB_RELEASE} ${CMD}
 
 docker container logs ${GITHUB_PROJECT}_${GITHUB_RELEASE} 
 docker container top ${GITHUB_PROJECT}_${GITHUB_RELEASE} 
