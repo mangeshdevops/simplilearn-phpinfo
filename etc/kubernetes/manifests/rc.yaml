@@ -35,11 +35,11 @@ spec:
               protocol: TCP
           resources:
             limits:
-              cpu: 50m
-              memory: 120Mi
+              cpu: 10m
+              memory: 100M
             requests:
-              cpu: 50m
-              memory: 120Mi
+              cpu: 10m
+              memory: 20M
           securityContext:
             runAsGroup: 1000620000
             runAsUser: 1000620000
