@@ -22,10 +22,10 @@ services:
       resources:
         limits:
           cpus: "0.050"
-          memory: 10M
+          memory: 12M
         reservations:
           cpus: "0.050"
-          memory: 10M
+          memory: 12M
     entrypoint: /usr/bin/php
     environment:
       HELLO: world
