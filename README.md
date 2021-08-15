@@ -1,12 +1,10 @@
 # simplilearn-phpinfo
 ## CLONE GITHUB REPOSITORY
 ```
-export ENV_FILE=common.env
-export GITHUB_BRANCH=2021-08
-export GITHUB_PROJECT=simplilearn-phpinfo
-export GITHUB_RELEASE=single-line
-export GITHUB_USERNAME=academiaonline
-export NODEPORT=80
+GITHUB_BRANCH=2021-08
+GITHUB_PROJECT=simplilearn-phpinfo
+GITHUB_RELEASE=single-line
+GITHUB_USERNAME=academiaonline
 
 cd ${HOME}/
 git clone https://github.com/${GITHUB_USERNAME}/${GITHUB_PROJECT}
@@ -22,7 +20,15 @@ docker image push  ${GITHUB_USERNAME}/${GITHUB_PROJECT}:${GITHUB_RELEASE}
 ```
 ## CREATE DOCKER CONTAINERS AND VOLUMES
 ```
-docker container run --cpus 0.050 --detach --entrypoint /usr/bin/php --memory 10M --name ${GITHUB_PROJECT}_${GITHUB_RELEASE} --publish ${NODEPORT}:8080 --read-only --rm --user nobody --volume ${PWD}/${GITHUB_SRC}/:${WORKDIR}/:ro --workdir ${WORKDIR}/ ${GITHUB_USERNAME}/${GITHUB_PROJECT}:${GITHUB_RELEASE} -f index.php -S 0.0.0.0:8080
+CPUS=0.050
+ENTRYPOINT=/usr/bin/php
+MEMORY=10M
+NODEPORT=80
+TARGETPORT=8080
+USER=1000620000:1000620000
+
+CMD="-f index.php -S 0.0.0.0:${TARGETPORT}"
+docker container run --cpus ${CPUS} --detach --entrypoint ${ENTRYPOINT} --memory ${MEMORY} --name ${GITHUB_PROJECT}_${GITHUB_RELEASE} --publish ${NODEPORT}:${TARGETPORT} --read-only --rm --user ${USER} --volume ${PWD}/${GITHUB_SRC}/:${WORKDIR}/:ro --workdir ${WORKDIR}/ ${GITHUB_USERNAME}/${GITHUB_PROJECT}:${GITHUB_RELEASE} ${CMD}
 
 docker container logs ${GITHUB_PROJECT}_${GITHUB_RELEASE} 
 docker container top ${GITHUB_PROJECT}_${GITHUB_RELEASE} 
