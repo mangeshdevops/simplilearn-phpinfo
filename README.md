@@ -43,8 +43,8 @@ docker stack deploy --compose-file docker-compose.yaml ${GITHUB_PROJECT}_${GITHU
 ```
 ## DEPLOY WITH KUBERNETES/OPENSHIFT
 ```
-oc new-project ${GITHUB_PROJECT}_${GITHUB_RELEASE}
-kubectl create namespace ${GITHUB_PROJECT}_${GITHUB_RELEASE}
-kubectl create secret generic simplilearn-phpinfo-secret --from-file src/index.php --namespace ${GITHUB_PROJECT}_${GITHUB_RELEASE}
-kubectl apply --filename etc/kubernetes/manifests/ --namespace ${GITHUB_PROJECT}_${GITHUB_RELEASE}
+oc new-project ${GITHUB_PROJECT}-${GITHUB_RELEASE}
+kubectl create namespace ${GITHUB_PROJECT}-${GITHUB_RELEASE}
+kubectl create secret generic simplilearn-phpinfo-secret --from-file src/index.php --namespace ${GITHUB_PROJECT}-${GITHUB_RELEASE}
+kubectl apply --filename etc/kubernetes/manifests/ --namespace ${GITHUB_PROJECT}-${GITHUB_RELEASE}
 ```
